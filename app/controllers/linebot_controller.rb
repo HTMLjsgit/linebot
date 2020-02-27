@@ -27,14 +27,26 @@ class LinebotController < ApplicationController
     events.each { |event|
 
       # event.message['text']でLINEで送られてきた文書を取得
-      if event.message['text'].include?("好き")
-        response = "んほぉぉぉぉぉぉ！すきすきすきすきすきすきすきすきぃぃぃぃぃ"
-      elsif event.message["text"].include?("行ってきます")
-        response = "どこいくの？どこいくの？どこいくの？寂しい寂しい寂しい。。。"
+      if event.message['text'].include?("こんにちは")
+        response = "どうもこんにちは私はくろrailsまんのbotでございます。"
+      elsif event.message["text"].include?("いってきます")
+        response = "いってらっしゃいませ。ごしゅじんさま"
       elsif event.message['text'].include?("おはよう")
-        response = "おはよう。なんで今まで連絡くれなかったの？"
-      elsif event.message['text'].include?("みーくん")
-        response = "みーくん！？" * 50
+        response = "おはようございます。今日から一日が始まりますよ。"
+      elsif event.message['text'].include?("だれ")
+        response = "私はくろrailsまんのbotです。"
+      elsif event.message['text'].include?("おい")
+        response = "どうかいたしましたか？"
+      elsif event.message['text'].include?("あんだーてーる")
+        response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
+      elsif event.message['text'].include?("ごめん")
+        response = "大丈夫ですよ。"
+      elsif event.message['text'].include?("プログラミングできる")
+        response = "私ですか？プログラミングは。まぁちょこっとだけできますよ"
+      elsif event.message['text'].include?("さようなら")
+        response = "さようならお疲れ様です。"
+      elsif event.message['text'].include?("おやすみ")
+        response = "おやすみなさい。明日も頑張りましょう"
       else
         response = @post.name
       end
