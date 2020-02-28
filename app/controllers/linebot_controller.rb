@@ -140,6 +140,11 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Sticker
           p "===============どうだ？スタンプ押したよおおおおおお=========================="
           response = "いいスタンプですね"
+          message = {
+            type: 'text',
+            text: response
+          }
+          client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
