@@ -61,8 +61,8 @@ end
       elsif event.message['text'].include?("おもしろいはなしして")
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
       elsif event.message['text'].include?("スタンプおくって")
-        client.reply_message(event['replyToken'], [happySticky, message])
-      elsif event.message['packageId'].to_s.!nil?
+        client.reply_message(event['replyToken'], [happySticky, packageId: "1"])
+      elsif !event.message['packageId'].to_s.blank?
         response = "素晴らしいスタンプですね！"
       else
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
