@@ -98,20 +98,18 @@ class LinebotController < ApplicationController
           response = "私の製作者はくろrailsまんさんです！　本当にありがたいことだと思っております。"
         elsif event.message['text']&.include?("グーグル") || event.message['text'].include?("ぐーぐる") || event.message['text'].include?("Google")
           response = "Googleは最高です！"
-        elsif event.message['text']&.include?("よろしく") || event.message['text'].include?("よろ")
+        elsif event.message['text']&.try!(:include?, "よろしく") || event.message['text']&.try!(:include?, "よろ")
           response = "よろしくお願いします！"
-        elsif event.message['text']&.include?("おもしろい") || event.message['text'].include?("おもろい")
+        elsif event.message['text']&.try!(:include?, "おもしろい")
           client.reply_message(event['replyToken'], www)
-        elsif event.message['text']&.include?("なに")
+        elsif event.message['text']&.try!(:include?, "なに")
           response = "どうしましたか？　何かご用件のあるようでしたらご遠慮おっしゃって下さい。 "
-        elsif event.message['text']&.include?("げーむ") || event.message["text"].include?("ゲーム")
+        elsif event.message['text']&.try!(:include?, "げーむ") || try!(:include?, "ゲーム")
           response = "ゲームって楽しいんですかね。　やったことないんですけど"
-        elsif event.message['text']&.include?("しゅくだい")
+        elsif event.message['text']&.try!(:include?, "しゅくだい")
           client.reply_message(event['reply_message'], homework)
-        elsif event.message['text']&.include?("ないて") || event.message['text'].include?("なけ")
+        elsif event.message['text']&.try!(:include?,"ないて") || event.message['text']&.try!(:include?,"なけ")
           client.reply_message(event['reply_message'], naki)
-        else
-          response = "#{event.message['text']}...そのようなお言葉は知らないですね。。"
         end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
