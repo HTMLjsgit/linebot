@@ -65,7 +65,7 @@ end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       # end
-      if !event.message['text'].blank?
+      if !event.message['packageId'].blank?
          response = "いいスタンプですね"
       end
 
