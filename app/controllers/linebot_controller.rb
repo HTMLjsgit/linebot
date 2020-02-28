@@ -50,7 +50,7 @@ class LinebotController < ApplicationController
       elsif event.message['text'].include?("ありがとう")
         response = "どういたしまして"
       elsif event.message['text'].include?("youtube") || event.message['text'].include?("ユーチューブ") || event.message['text'].include?("ゆーちゅーぶ")
-        response = "#{event.message['text']}って最高ですよね！　https://youtube.com"
+        response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
       else
         response = @post.name
       end
