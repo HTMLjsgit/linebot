@@ -21,7 +21,23 @@ class LinebotController < ApplicationController
   end
 
   def bye
-      { "type": "sticker", "packageId": "11538", "stickerId": "51626494" }
+      { "type": "sticker", "packageId": "11538", "stickerId": "51626533" }
+  end
+
+  def sleep
+      { "type": "sticker", "packageId": "11538", "stickerId": "52114121"}
+  end
+
+  def homework
+    {"type": "sticker", "packageId": "11538", "stickerId": "51626525"}
+  end
+
+  def www
+    { "type": "sticker", "packageId": "11538", "stickerId": "51626504"}
+  end
+
+  def naki
+    { "type": "sticker", "packageId" : "11538", "stickerId": "51626529"}
   end
 
   def callback
@@ -60,18 +76,44 @@ class LinebotController < ApplicationController
         response = "さようならお疲れ様です。"
         client.reply_message(event['replyToken'],bye)
       elsif event.message['text'].include?("おやすみ")
-        response = "おやすみなさい。明日も頑張りましょう"
-        client.reply_message(event['replyToken'], )
+        client.reply_message(event['replyToken'], sleep)
+        response = "おやすみなさい。起きた後も頑張りましょう"
       elsif event.message['text'].include?("ありがとう") || event.message['text'].include?("ありがたい")
         response = "どういたしまして"
       elsif event.message['text'].include?("youtube") || event.message['text'].include?("ユーチューブ") || event.message['text'].include?("ゆーちゅーぶ")
         response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
-      elsif event.message['text'].include?("おもしろいはなしして")
-        response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
+      elsif event.message['text'].include?("はなしして")
+        response = "話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
       elsif event.message['text'].include?("スタンプ") || event.message['text'].include?("すたんぷ")
         client.reply_message(event['replyToken'], happySticky)
-      elsif event.message['packageId']
-         response = "いいスタンプですね"
+      elsif event.message['packageId'].include?(event.message['packageId'])
+        response = "いいスタンプですね"
+      elsif event.message['text'].include?("そうな")
+        response = "そうなんですよ！"
+      elsif event.message['text'].include?("たすけて") || event.message['text'].include?("たすけろ")
+        response = "どうしましたか？　大丈夫ですか？　\n https://www.city.hiroshima.med.or.jp/hma/archive/ambulance/ambulance.html \n https://www.gov-online.go.jp/useful/article/201309/3.html"
+      elsif event.message['text'].include?("すご")
+        response = "ありがとうございます。　非常にうれしいのでございます・"
+      elsif event.message['text'].include?("せいさくしゃ") || event.message['text'].include?("さくしゃ") || event.message['text'].include?("つくったひと")
+        response = "私の製作者はくろrailsまんさんです！　本当にありがたいことだと思っております。"
+      elsif event.message['text'].include?("グーグル") || event.message['text'].include?("ぐーぐる") || event.message['text'].include?("Google")
+        response = "Googleは最高です！"
+      elsif event.message['text'].include?("よろしく") event.message['text'].include?("よろ")
+        response = "よろしくお願いします！"
+      elsif event.message['text'].include?("おもしろい") || event.message['text'].include?("おもろい")
+        client.reply_message(event['replyToken'], www)
+      elsif event.message['text'].include?("なに")
+        response = "どうしましたか？　何かご用件のあるようでしたらご遠慮おっしゃって下さい。 "
+      elsif event.message['text'].include?("げーむ") || event.message["text"].include?("ゲーム")
+        response = "ゲームって楽しいんですかね。　やったことないんですけど"
+      elsif event.message['text'] == "docuemnt.getElementById"
+        response = "javascript コード　document.getElementById ID要素を取得する"
+      elsif event.message['text'].include?("しゅくだい")
+        client.reply_message(event['reply_message'], homework)
+      elsif event.message['text'].include?("ないて") || event.message['text'].include?("なけ")
+        client.reply_message(event['reply_message'], naki)
+      else
+        response = "#{event.message['text']}...そのようなお言葉は知らないですね。。"
       end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
