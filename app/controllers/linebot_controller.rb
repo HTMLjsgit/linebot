@@ -137,7 +137,7 @@ class LinebotController < ApplicationController
       case event
       when Line::Bot::Event::Message
         case event.type
-        when Line::Bot::Event::MessageType::Sticker
+        when Line::Bot::Event::MessageType::PackageId
           response = "いいスタンプですね"
         when Line::Bot::Event::MessageType::Text
           message = {
