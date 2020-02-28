@@ -194,7 +194,7 @@ class LinebotController < ApplicationController
           response = "明日もいい日になるといいですね"
         elsif event.message['text']&.try!(:include?, "れきし")
           response = "人間の歴史は非常に興味深いものですね"
-        elsif event.message['text']&.try!(:include?, "https://youtube.com/watch?v=") ||  event.message['text']&.try!(:include?, "https://youtu.be/")
+        elsif event.message['text']&.try!(:include?, "https://www.youtube.com/watch?v=") ||  event.message['text']&.try!(:include?, "https://youtu.be/")
           urll = event.message['text'].gsub(/http.+v=/, "")
           url = url.gsub(/http.+be./, "")
           jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
