@@ -98,7 +98,7 @@ class LinebotController < ApplicationController
         response = "私の製作者はくろrailsまんさんです！　本当にありがたいことだと思っております。"
       elsif event.message['text'].include?("グーグル") || event.message['text'].include?("ぐーぐる") || event.message['text'].include?("Google")
         response = "Googleは最高です！"
-      elsif event.message['text'].include?("よろしく") || event.message['text'].include?("よろ")
+      elsif event.message['text'].include?("よろしく") event.message['text'].include?("よろ")
         response = "よろしくお願いします！"
       elsif event.message['text'].include?("おもしろい") || event.message['text'].include?("おもろい")
         client.reply_message(event['replyToken'], www)
