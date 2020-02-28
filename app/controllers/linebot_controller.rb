@@ -199,17 +199,19 @@ class LinebotController < ApplicationController
           url = urlmake.gsub(/http.+v=/, "")
           #url = url.gsub(/http.+be./, "")
           jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
+          puts "=======================" + jsonURL
           json = open(jsonURL).read
           objs = JSON.parse(json.to_s)
-          response = "その動画の視聴回数 #{viewcount} です \n "
+          response = "その動画の視聴回数 #{viewcount} です"
         elsif event.message['text']&.try!(:include?, "https://youtu.be/")
           urlmake = event.message['text'].to_s
           # url = urlmake.gsub(/http.+v=/, "")
           url = urlmake.gsub(/http.+be./, "")
           jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
+          puts "=======================" + jsonURL
           json = open(jsonURL).read
           objs = JSON.parse(json.to_s)
-          response = "その動画の視聴回数 #{viewcount} です \n "
+          response = "その動画の視聴回数 #{viewcount} です"
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
         end
