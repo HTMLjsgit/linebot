@@ -56,59 +56,57 @@ class LinebotController < ApplicationController
 
     events.each { |event|
         # event.message['text']でLINEで送られてきた文書を取得
-        if event.message['text'].try!(:include?, "こんにちは")
+        if event.message['text']&.try!(:include?, "こんにちは")
           response = "どうもこんにちは私はくろrailsまんのbotでございます。"
-        elsif event.message["text"]&.include?("いってきます")
+        elsif event.message["text"]&.try!(:include?, "いってきます")
           response = "いってらっしゃいませ。ごしゅじんさま"
-        elsif event.message['text']&.include?("おはよう")
+        elsif event.message['text']&.try!(:include?, "おはよう")
           response = "おはようございます。今日から一日が始まりますよ。"
-        elsif event.message['text']&.include?("だれ")
+        elsif event.message['text']&.try!(:include?, "だれ")
           response = "私はくろrailsまんのbotです。"
-        elsif event.message['text'].include?("おい") || event.message['text'].include?("ねぇ") || event.message['text'].include?("ねえ") || event.message['text'].include?("あのさ")
+        elsif event.message['text']&.try!(:include?, "おい")
           response = "どうかしましたか？"
-        elsif event.message['text'].include?("あんだーてーる") || event.message['text'].include?("アンダーテール") || event.message['text'].include?("undertale")
+        elsif event.message['text']&.try!(:include?, "アンダーテール")
           response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
-        elsif event.message['text'].include?("ごめん")
+        elsif event.message['text']&.try!(:include?, "ごめん")
           response = "大丈夫ですよ。"
-        elsif event.message['text'].include?("プログラミングできる")
+        elsif event.message['text']&.try!(:include?, "プログラミングでき")
           response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
-        elsif event.message['text'].include?("さようなら")
+        elsif event.message['text']&.try!(:include?, "さようなら")
           response = "さようならお疲れ様です。"
           client.reply_message(event['replyToken'],bye)
-        elsif event.message['text'].include?("おやすみ")
+        elsif event.message['text']&.try!(:include?, "おやすみ")
           client.reply_message(event['replyToken'], sleepda)
           response = "おやすみなさい。起きた後も頑張りましょう"
-        elsif event.message['text'].include?("ありがとう") || event.message['text'].include?("ありがたい")
+        elsif event.message['text']&.try!(:include?, "ありがとう")
           response = "どういたしまして"
-        elsif event.message['text'].include?("youtube") || event.message['text'].include?("ユーチューブ") || event.message['text'].include?("ゆーちゅーぶ")
+        elsif event.message['text']&.try!(:include?, "youtube")
           response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
-        elsif event.message['text'].include?("はなしして")
+        elsif event.message['text']&.try!(:include?, "はなして")
           response = "話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
-        elsif event.message['text'].include?("スタンプ") || event.message['text'].include?("すたんぷ")
+        elsif event.message['text']&.try!(:include?, "スタンプ")
           client.reply_message(event['replyToken'], happySticky)
-        elsif event.message['packageId'].include?(event.message['packageId'])
-          response = "いいスタンプですね"
-        elsif event.message['text'].try!(:include?, "そうな")
+        elsif event.message['text']&.try!(:include?, "そうな")
           response = "そうなんですよ！"
-        elsif event.message['text']&.include?("たすけて") || event.message['text'].include?("たすけろ")
+        elsif event.message['text']&.try(:include?, "たすけて")
           response = "どうしましたか？　大丈夫ですか？　\n https://www.city.hiroshima.med.or.jp/hma/archive/ambulance/ambulance.html \n https://www.gov-online.go.jp/useful/article/201309/3.html"
-        elsif event.message['text'].try!(:include?, "すご")
+        elsif event.message['text']&.try!(:include?, "すご")
           response = "ありがとうございます。　非常にうれしいのでございます・"
-        elsif event.message['text']&.include?("せいさくしゃ") || event.message['text'].include?("さくしゃ") || event.message['text'].include?("つくったひと")
+        elsif event.message['text']&.try!(:include?, "さくしゃ")
           response = "私の製作者はくろrailsまんさんです！　本当にありがたいことだと思っております。"
-        elsif event.message['text']&.include?("グーグル") || event.message['text'].include?("ぐーぐる") || event.message['text'].include?("Google")
+        elsif event.message['text']&.try!(:include?, "グーグル")
           response = "Googleは最高です！"
-        elsif event.message['text']&.try!(:include?, "よろしく") || event.message['text']&.try!(:include?, "よろ")
+        elsif event.message['text']&.try!(:include?, "よろしく")
           response = "よろしくお願いします！"
         elsif event.message['text']&.try!(:include?, "おもしろい")
           client.reply_message(event['replyToken'], www)
         elsif event.message['text']&.try!(:include?, "なに")
           response = "どうしましたか？　何かご用件のあるようでしたらご遠慮おっしゃって下さい。 "
-        elsif event.message['text']&.try!(:include?, "げーむ") || try!(:include?, "ゲーム")
+        elsif event.message['text']&.try!(:include?, "ゲーム")
           response = "ゲームって楽しいんですかね。　やったことないんですけど"
         elsif event.message['text']&.try!(:include?, "しゅくだい")
           client.reply_message(event['reply_message'], homework)
-        elsif event.message['text']&.try!(:include?,"ないて") || event.message['text']&.try!(:include?,"なけ")
+        elsif event.message['text']&.try!(:include?,"ないて")
           client.reply_message(event['reply_message'], naki)
         end
       # else
