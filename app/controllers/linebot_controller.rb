@@ -1,5 +1,6 @@
 class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
+  require 'date'
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
 
@@ -74,7 +75,7 @@ class LinebotController < ApplicationController
           response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
         elsif event.message['text']&.try!(:include?, "ごめん")
           response = "大丈夫ですよ。"
-        elsif event.message['text']&.try!(:include?, "プログラミングでき")
+        elsif event.message['text']&.try!(:include?, "プログラミング")
           response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
         elsif event.message['text']&.try!(:include?, "さようなら") || event.message['text']&.try!(:include?, "ばい")
           response = "さようならお疲れ様です。"
@@ -151,7 +152,15 @@ class LinebotController < ApplicationController
           response = "今日の天気は最高ですね！"
         elsif event.message['text']&.try!(:include?, "たのしい")
           response = "そうですか！それはよかったですね！"
-       else
+        elsif event.message['text']&.try!(:include?, "アンダーフェール")
+          response = "アンダーテールの二次創作のゲームですね！　知ってますよ！"
+        elsif event.message['text']&.try!(:include?, "おなか") || event.message['text']&.try!(:include?, "はら")
+          response = "そうなんですか？　なにか食べに行ってみてはいががでしょうか"
+        elsif event.message['text']&.try!(:include?, "じかん") || event.message['text']&.try!(:include?, "じこく")
+          thisMonth = Date.today
+          nowTime = DateTime.now
+          response = "現在時刻は#{thisMonth.year}年#{thisMonth.month}月#{thisMonth.day}日 #{nowTime.hour}時#{nowTime.minute}分#{nowTime.second}秒"
+        else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
         end
       # else
