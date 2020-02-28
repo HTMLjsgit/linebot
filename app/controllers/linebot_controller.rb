@@ -66,7 +66,7 @@ end
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       # end
       puts "==========================fsdfsdfsfsfds====" + event.message['packageId'].to_s
-      if !event.message['packageId'].blank?
+      if !event.message['packageId'].to_s.blank?
          response = "いいスタンプですね"
       end
 
