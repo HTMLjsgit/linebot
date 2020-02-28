@@ -84,8 +84,8 @@ class LinebotController < ApplicationController
         end
         if event.message['text'].include?("さようなら")
           response = "さようならお疲れ様です。"
-        end
           client.reply_message(event['replyToken'],bye)
+        end
         if event.message['text'].include?("おやすみ")
 
           client.reply_message(event['replyToken'], sleepda)
