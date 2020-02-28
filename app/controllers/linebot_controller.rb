@@ -202,7 +202,14 @@ class LinebotController < ApplicationController
           puts "=======================" + jsonURL
           json = open(jsonURL).read
           objs = JSON.parse(json.to_s)
-          response = "その動画の視聴回数 #{viewcount} です"
+
+          viewcount = objs['items'][0]['statistics']['viewCount'].to_s
+          likecount = objs['items'][0]['statistics']['likeCount'].to_s
+          dislikecount = objs['items'][0]['statistics']['dislikeCount'].to_s
+          channelid = objs['items'][0]['snippet']['channelId']
+          channelname = objs['items'][0]['snippet']['channelTitle']
+
+          response = "その動画の視聴回数 #{viewcount} です \n その動画の高評価数#{likecount}です \n その動画の低評価数#{dislikecount}です \n その動画のチャンネル名#{channelname}です "
         elsif event.message['text']&.try!(:include?, "https://youtu.be/")
           urlmake = event.message['text'].to_s
           # url = urlmake.gsub(/http.+v=/, "")
@@ -211,7 +218,13 @@ class LinebotController < ApplicationController
           puts "=======================" + jsonURL
           json = open(jsonURL).read
           objs = JSON.parse(json.to_s)
-          response = "その動画の視聴回数 #{viewcount} です"
+
+          viewcount = objs['items'][0]['statistics']['viewCount'].to_s
+          likecount = objs['items'][0]['statistics']['likeCount'].to_s
+          dislikecount = objs['items'][0]['statistics']['dislikeCount'].to_s
+          channelname = objs['items'][0]['snippet']['channelTitle']
+
+          response = "その動画の視聴回数 #{viewcount} です \n その動画の高評価数#{likecount}です \n その動画の低評価数#{dislikecount}です \n その動画のチャンネル名#{channelname}です "
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
         end
