@@ -88,7 +88,7 @@ class LinebotController < ApplicationController
           response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
         elsif event.message['text']&.try!(:include?, "はなして")
           response = "話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
-        elsif event.message['text']&.try!(:include?, "スタンプ")
+        elsif event.message['text']&.try!(:include?, "スタンプ") || vent.message['text']&.try!(:include?, "すたんぷ")
           client.reply_message(event['replyToken'], happySticky)
         elsif event.message['text']&.try!(:include?, "そうな")
           response = "そうなんですよ！"
@@ -119,7 +119,7 @@ class LinebotController < ApplicationController
         elsif event.message['text']&.try!(:include?, "うそつくな") || event.message['text']&.try!(:include?, "うそつけ")
           response = "わ　私がですか！？　嘘なんてつきませんよ。　人工知能なんですから"
         elsif event.message['text']&.try!(:include?, "やば")
-          response = "本当ですよね。　やばっていうことばもすごいですね"
+          response = "本当ですよね。　やばっていう言葉もすごいですね"
         elsif event.message['text']&.try!(:include?, "さる") || event.message['text']&.try!(:include?, "サル")
           response = "あなたたち人間の祖先はサルです。　感謝しなきゃいけませんね"
         elsif event.message['text']&.try!(:include?, "おこって")
