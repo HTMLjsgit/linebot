@@ -136,7 +136,7 @@ class LinebotController < ApplicationController
           response = "はい！"
         elsif event.message['text']&.try!(:include?, "つかう")
           response = "なにをですか？"
-        elsif event.message['text']&.try!(:include?, "へぇ") || event.message['text']&.try!(:include?, "へえ") || event.message['text']&.try!(:include?, "ほほう")
+        elsif event.message['text']&.try!(:include?, "へぇ") || event.message['text']&.try!(:include?, "へえ") || event.message['text']&.try!(:include?, "ほほう") || event.message['text']&.try!(:include?, "あの") || event.message['text']&.try!(:include?, "きいて") || event.message['text']&.try!(:include?, "きけ")
           response = "はい！"
        else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。  ]]"
