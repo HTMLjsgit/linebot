@@ -49,7 +49,7 @@ end
       elsif event.message['text'].include?("ごめん")
         response = "大丈夫ですよ。"
       elsif event.message['text'].include?("プログラミングできる")
-        response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n ruby c# pythonちょこっとって感じですかね"
+        response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
       elsif event.message['text'].include?("さようなら")
         response = "さようならお疲れ様です。"
       elsif event.message['text'].include?("おやすみ")
@@ -61,7 +61,7 @@ end
       elsif event.message['text'].include?("おもしろいはなしして")
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
       elsif event.message['text'].include?("スタンプおくって")
-        client.reply_message(event['replyToken'], [happySticky, packageId: "1"])
+        client.reply_message(event['replyToken'], [happySticky, response])
       elsif !event.message['packageId'].to_s.blank?
         response = "素晴らしいスタンプですね！"
       else
@@ -75,8 +75,7 @@ end
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
-            text: response,
-            packageId: "1"
+            text: response
           }
           client.reply_message(event['replyToken'], message)
         end
