@@ -34,40 +34,37 @@ end
 
     events.each { |event|
       # event.message['text']でLINEで送られてきた文書を取得
-      # if event.message['text'].include?("こんにちは") || event.message['text'].include?("やぁ") || event.message['text'].include?("やあ")
-      #   response = "どうもこんにちは私はくろrailsまんのbotでございます。"
-      # elsif event.message["text"].include?("いってきます")
-      #   response = "いってらっしゃいませ。ごしゅじんさま"
-      # elsif event.message['text'].include?("おはよう")
-      #   response = "おはようございます。今日から一日が始まりますよ。"
-      # elsif event.message['text'].include?("だれ")
-      #   response = "私はくろrailsまんのbotです。"
-      # elsif event.message['text'].include?("おい") || event.message['text'].include?("ねぇ") || event.message['text'].include?("ねえ") || event.message['text'].include?("あのさ")
-      #   response = "どうかしましたか？"
-      # elsif event.message['text'].include?("あんだーてーる") || event.message['text'].include?("アンダーテール") || event.message['text'].include?("undertale")
-      #   response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
-      # elsif event.message['text'].include?("ごめん")
-      #   response = "大丈夫ですよ。"
-      # elsif event.message['text'].include?("プログラミングできる")
-      #   response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
-      # elsif event.message['text'].include?("さようなら")
-      #   response = "さようならお疲れ様です。"
-      # elsif event.message['text'].include?("おやすみ")
-      #   response = "おやすみなさい。明日も頑張りましょう"
-      # elsif event.message['text'].include?("ありがとう") || event.message['text'].include?("ありがたい")
-      #   response = "どういたしまして"
-      # elsif event.message['text'].include?("youtube") || event.message['text'].include?("ユーチューブ") || event.message['text'].include?("ゆーちゅーぶ")
-      #   response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
-      # elsif event.message['text'].include?("おもしろいはなしして")
-      #   response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
-      # elsif event.message['text'].include?("スタンプ") || event.message['text'].include?("すたんぷ")
-      #   client.reply_message(event['replyToken'], happySticky)
-      # else
-      #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
-      # end
-      puts "==========================fsdfsdfsfsfds====" + event.message['packageId'].to_s
-      if event.message['packageId'].to_s.nil?
-        p "==================ここまでｒきたななななななななんあ==========="
+      if event.message['text'].include?("こんにちは") || event.message['text'].include?("やぁ") || event.message['text'].include?("やあ")
+        response = "どうもこんにちは私はくろrailsまんのbotでございます。"
+      elsif event.message["text"].include?("いってきます")
+        response = "いってらっしゃいませ。ごしゅじんさま"
+      elsif event.message['text'].include?("おはよう")
+        response = "おはようございます。今日から一日が始まりますよ。"
+      elsif event.message['text'].include?("だれ")
+        response = "私はくろrailsまんのbotです。"
+      elsif event.message['text'].include?("おい") || event.message['text'].include?("ねぇ") || event.message['text'].include?("ねえ") || event.message['text'].include?("あのさ")
+        response = "どうかしましたか？"
+      elsif event.message['text'].include?("あんだーてーる") || event.message['text'].include?("アンダーテール") || event.message['text'].include?("undertale")
+        response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
+      elsif event.message['text'].include?("ごめん")
+        response = "大丈夫ですよ。"
+      elsif event.message['text'].include?("プログラミングできる")
+        response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
+      elsif event.message['text'].include?("さようなら")
+        response = "さようならお疲れ様です。"
+      elsif event.message['text'].include?("おやすみ")
+        response = "おやすみなさい。明日も頑張りましょう"
+      elsif event.message['text'].include?("ありがとう") || event.message['text'].include?("ありがたい")
+        response = "どういたしまして"
+      elsif event.message['text'].include?("youtube") || event.message['text'].include?("ユーチューブ") || event.message['text'].include?("ゆーちゅーぶ")
+        response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
+      elsif event.message['text'].include?("おもしろいはなしして")
+        response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
+      elsif event.message['text'].include?("スタンプ") || event.message['text'].include?("すたんぷ")
+        client.reply_message(event['replyToken'], happySticky)
+      end
+
+      if !event.message['events']['packageId'].blank?
          response = "いいスタンプですね"
       end
 
