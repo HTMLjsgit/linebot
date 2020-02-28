@@ -55,9 +55,8 @@ class LinebotController < ApplicationController
     events = client.parse_events_from(body)
 
     events.each { |event|
-      unless event.message['text'].nil?
         # event.message['text']でLINEで送られてきた文書を取得
-        if event.message['text'].include?("こんにちは") || event.message['text'].include?("やぁ") || event.message['text'].include?("やあ")
+        if event.message['text']&.include?("こんにちは")
           response = "どうもこんにちは私はくろrailsまんのbotでございます。"
         elsif event.message["text"].include?("いってきます")
           response = "いってらっしゃいませ。ごしゅじんさま"
@@ -114,7 +113,6 @@ class LinebotController < ApplicationController
         else
           response = "#{event.message['text']}...そのようなお言葉は知らないですね。。"
         end
-      end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       # end
