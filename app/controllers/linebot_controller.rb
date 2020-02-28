@@ -88,11 +88,11 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], happySticky)
         elsif event.message['packageId'].include?(event.message['packageId'])
           response = "いいスタンプですね"
-        elsif event.message['text']&.include?("そうな")
+        elsif event.message['text'].try!(:include?, "そうな")
           response = "そうなんですよ！"
         elsif event.message['text']&.include?("たすけて") || event.message['text'].include?("たすけろ")
           response = "どうしましたか？　大丈夫ですか？　\n https://www.city.hiroshima.med.or.jp/hma/archive/ambulance/ambulance.html \n https://www.gov-online.go.jp/useful/article/201309/3.html"
-        elsif event.message['text']&include?("すご")
+        elsif event.message['text'].try!(:include?, "すご")
           response = "ありがとうございます。　非常にうれしいのでございます・"
         elsif event.message['text']&.include?("せいさくしゃ") || event.message['text'].include?("さくしゃ") || event.message['text'].include?("つくったひと")
           response = "私の製作者はくろrailsまんさんです！　本当にありがたいことだと思っております。"
