@@ -11,10 +11,13 @@ class LinebotController < ApplicationController
   end
 
   def happySticky
-    [
-      { "type": "sticker", "packageId": "1", "stickerId": "4"}
-    ].shuffle.first
-  end
+  [
+    { "type": "sticker", "packageId": "1", "stickerId": "4" },
+    { "type": "sticker", "packageId": "1", "stickerId": "5" },
+    { "type": "sticker", "packageId": "1", "stickerId": "13" },
+  ].shuffle.first
+end
+
   def callback
 
     # Postモデルの中身をランダムで@postに格納する
@@ -58,7 +61,9 @@ class LinebotController < ApplicationController
       elsif event.message['text'].include?("おもしろいはなしして")
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
       elsif event.message['text'].include?("スタンプおくって")
-        client.reply_message(event['replyToken'], [happySticky, response])
+        client.reply_message(event['replyToken'], [happySticky, message])
+      elsif event.message['packageId'].to_s.!nil?
+        response = "素晴らしいスタンプですね！"
       else
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       end
@@ -70,7 +75,8 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
-            text: response
+            text: response,
+            packageId: "1"
           }
           client.reply_message(event['replyToken'], message)
         end
