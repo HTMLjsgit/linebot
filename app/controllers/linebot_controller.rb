@@ -83,7 +83,7 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], sleepda)
         elsif event.message['text']&.try!(:include?, "ありがとう")
           response = "どういたしまして"
-        elsif event.message['text']&.try!(:include?, "youtube")
+        elsif event.message['text']&.try!(:include?, "youtube") || event.message['text']&.try!(:include?, "ユーチューブ") || event.message['text']&.try!(:include?, "ゆーちゅーぶ")
           response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
         elsif event.message['text']&.try!(:include?, "はなして")
           response = "話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
@@ -146,7 +146,7 @@ class LinebotController < ApplicationController
         elsif event.message['text']&.try!(:include?, "つかれた") || event.message['text']&.try!(:include?, "つかれる")
           response = "お休みになられたほうがいいですよ。。"
        else
-          response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。  ]]"
+          response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
         end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
