@@ -51,7 +51,7 @@ class LinebotController < ApplicationController
       elsif event.message['text'].include?("おもしろいはなしして")
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
       else
-        response = @post.name
+        response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       end
       #if文でresponseに送るメッセージを格納
 
