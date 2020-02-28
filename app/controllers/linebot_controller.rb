@@ -65,10 +65,9 @@ end
       else
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       end
-      if !event.message['events'][10].blank?
+      if !event.message['events'].blank?
          response = "いいスタンプですね"
       end
-      puts "=========================================FS=DF==" + event.message['events'][10]
 
       #if文でresponseに送るメッセージを格納
 
