@@ -56,7 +56,6 @@ class LinebotController < ApplicationController
 
     events.each { |event|
       # event.message['text']でLINEで送られてきた文書を取得
-<<<<<<< HEAD
       if event.message['text'].include?("こんにちは") || event.message['text'].include?("やぁ") || event.message['text'].include?("やあ")
         response = "どうもこんにちは私はくろrailsまんのbotでございます。"
       elsif event.message["text"].include?("いってきます")
@@ -114,92 +113,6 @@ class LinebotController < ApplicationController
       else
         response = "#{event.message['text']}...そのようなお言葉は知らないですね。。"
       end
-=======
-      puts "=============================" + event.message['text']
-        if event.message['text'].to_s.include?("こんにちは") || event.message['text'].include?("やぁ") || event.message['text'].include?("やあ")
-          response = "どうもこんにちは私はくろrailsまんのbotでございます。"
-        end
-        if event.message["text"].to_s.include?("いってきます")
-          response = "いってらっしゃいませ。ごしゅじんさま"
-        end
-        if event.message['text'].to_s.include?("おはよう")
-          response = "おはようございます。今日から一日が始まりますよ。"
-        end
-        if event.message['text'].to_s.include?("だれ")
-          response = "私はくろrailsまんのbotです。"
-        end
-        if event.message['text'].to_s.include?("おい") || event.message['text'].include?("ねぇ") || event.message['text'].include?("ねえ") || event.message['text'].include?("あのさ")
-          response = "どうかしましたか？"
-        end
-        if event.message['text'].to_s.include?("あんだーてーる") || event.message['text'].include?("アンダーテール") || event.message['text'].include?("undertale")
-          response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
-        end
-
-        if event.message['text'].to_s.include?("ごめん")
-          response = "大丈夫ですよ。"
-        end
-
-        if event.message['text'].to_s.include?("プログラミングできる")
-          response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
-        end
-        if event.message['text'].to_s.include?("さようなら")
-          response = "さようならお疲れ様です。"
-          client.reply_message(event['replyToken'],bye)
-        end
-        if event.message['text'].to_s.include?("おやすみ")
-
-          client.reply_message(event['replyToken'], sleepda)
-          response = "おやすみなさい。起きた後も頑張りましょう"
-        end
-        if event.message['text'].to_s.include?("ありがとう") || event.message['text'].include?("ありがたい")
-          response = "どういたしまして"
-        end
-        if event.message['text'].to_s.include?("youtube") || event.message['text'].include?("ユーチューブ") || event.message['text'].include?("ゆーちゅーぶ")
-          response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
-        end
-        if event.message['text'].to_s.include?("はなしして")
-          response = "話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
-        end
-        if event.message['text'].to_s.include?("スタンプ") || event.message['text'].include?("すたんぷ")
-          client.reply_message(event['replyToken'], happySticky)
-        end
-        if event.message['packageId'].to_s.include?(event.message['packageId'])
-          response = "いいスタンプですね"
-        end
-        if event.message['text'].to_s.include?("そうな")
-          response = "そうなんですよ！"
-        end
-        if event.message['text'].to_s.include?("たすけ")
-          response = "どうしましたか？　大丈夫ですか？　\n https://www.city.hiroshima.med.or.jp/hma/archive/ambulance/ambulance.html \n https://www.gov-online.go.jp/useful/article/201309/3.html"
-        end
-        if event.message['text'].to_s.include?("すご")
-          response = "ありがとうございます。　非常にうれしいのでございます・"
-        end
-        if event.message['text'].to_s.include?("さくしゃ")
-          response = "私の製作者はくろrailsまんさんです！　本当にありがたいことだと思っております。"
-        end
-        if event.message['text'].to_s.include?("グーグル")
-          response = "Googleは最高です！"
-        end
-        if event.message['text'].to_s.include?("よろしく")
-          response = "よろしくお願いします！"
-        end
-        if event.message['text'].to_s.include?("おもしろい")
-          client.reply_message(event['replyToken'], www)
-        end
-        if event.message['text'].to_s.include?("なに")
-          response = "どうしましたか？　何かご用件のあるようでしたらご遠慮おっしゃって下さい。 "
-        end
-        if event.message["text"].to_s.include?("ゲーム")
-          response = "ゲームって楽しいんですかね。　やったことないんですけど"
-        end
-        if event.message['text'].to_s.include?("しゅくだい")
-          client.reply_message(event['reply_message'], homework)
-        end
-        if event.message['text'].to_s.include?("ないて")
-          client.reply_message(event['reply_message'], naki)
-        end
->>>>>>> 49954c06e7e7161914d1bf556113f29d033a655c
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       # end
