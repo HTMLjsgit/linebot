@@ -76,7 +76,7 @@ class LinebotController < ApplicationController
           response = "大丈夫ですよ。"
         elsif event.message['text']&.try!(:include?, "プログラミングでき")
           response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
-        elsif event.message['text']&.try!(:include?, "さようなら")
+        elsif event.message['text']&.try!(:include?, "さようなら") || event.message['text']&.try!(:include?, "ばい")
           response = "さようならお疲れ様です。"
           client.reply_message(event['replyToken'],bye)
         elsif event.message['text']&.try!(:include?, "おやすみ")
@@ -124,8 +124,12 @@ class LinebotController < ApplicationController
           response = "あなたたち人間の祖先はサルです。　感謝しなきゃいけませんね"
         elsif event.message['text']&.try!(:include?, "おこって")
           client.reply_message(event['replyToken'], angry)
+        elsif event.message['text']&.try!(:include?, "じこしょうかい")
+          response = "私はくろrailsまんのbotです。　性別はありません。 ちょっとしたことしか話せません　もしわけないとおもってます。"
+        elsif event.message['text']&.try!(:include?, "せいべつは") || event.message['text']&.try!(:include?, "おとこ") event.message['text']&.try!(:include?, "おんな")
+          response = "私に性別などありません。 \n あなたがなんて思うかですかね。"
         else
-          response = "私　物を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　アルファベット　を返信した場合このメッセージが帰ってきます。  ]]"
+          response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。  ]]"
         end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
@@ -138,7 +142,6 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Sticker
-          p "===============どうだ？スタンプ押したよおおおおおお=========================="
           response = "いいスタンプですね"
           message = {
             type: 'text',
