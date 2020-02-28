@@ -63,7 +63,7 @@ end
       else
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       end
-      unless event.message['oackageId'].to_s.blank?
+      unless event.message['packageId'].blank?
         response = "素晴らしいスタンプですね！"
       end
       if event.message['text'].include?("スタンプおくって")
