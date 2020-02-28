@@ -1,6 +1,10 @@
 class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
   require 'date'
+  require 'open-uri'
+  require 'json'
+  require 'uri'
+  require 'net/http'
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
 
@@ -190,6 +194,14 @@ class LinebotController < ApplicationController
           response = "明日もいい日になるといいですね"
         elsif event.message['text']&.try!(:include?, "れきし")
           response = "人間の歴史は非常に興味深いものですね"
+        elsif event.message['text']&.try!(:include?, "https://youtube.com/watch?v=") ||  event.message['text']&.try!(:include?, "https://youtu.be/")
+          urll = event.message['text'].gsub(/http.+v=/, "")
+          url = url.gsub(/http.+be./, "")
+          jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
+          json = oepn(jsonURL).read
+          objs = JSON.parse(json)
+          viewcount = objs['items'][0]['statistics']['viewCount'].to_s
+          response = "その動画の視聴回数 #{viewcount} です"
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
         end
