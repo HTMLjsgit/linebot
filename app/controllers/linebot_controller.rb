@@ -196,7 +196,8 @@ class LinebotController < ApplicationController
           response = "人間の歴史は非常に興味深いものですね"
         elsif event.message['text']&.try!(:include?, "https://www.youtube.com/watch?v=") ||  event.message['text']&.try!(:include?, "https://youtu.be/")
           puts "============================================" + event.message['text'].to_s + "なのかかかかかｋ"
-          urll = event.message['text'].gsub(/http.+v=/, "")
+          urlmake = event.message['text'].to_s
+          urll = urlmake.gsub(/http.+v=/, "")
           url = url.gsub(/http.+be./, "")
           puts event.message['text']
           puts "~======================== + #{url}"
