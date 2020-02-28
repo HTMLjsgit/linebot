@@ -56,8 +56,7 @@ class LinebotController < ApplicationController
 
     events.each { |event|
         # event.message['text']でLINEで送られてきた文書を取得
-      event.message['text'].try!(:include)
-        if event.message['text']&.include?("こんにちは")
+        if event.message['text'].try!(:include?, "こんにちは")
           response = "どうもこんにちは私はくろrailsまんのbotでございます。"
         elsif event.message["text"]&.include?("いってきます")
           response = "いってらっしゃいませ。ごしゅじんさま"
