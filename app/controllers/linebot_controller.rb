@@ -88,7 +88,7 @@ class LinebotController < ApplicationController
           response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
         elsif event.message['text']&.try!(:include?, "はなして")
           response = "話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
-        elsif event.message['text']&.try!(:include?, "スタンプ") || vent.message['text']&.try!(:include?, "すたんぷ")
+        elsif event.message['text']&.try!(:include?, "スタンプ") || event.message['text']&.try!(:include?, "すたんぷ")
           client.reply_message(event['replyToken'], happySticky)
         elsif event.message['text']&.try!(:include?, "そうな")
           response = "そうなんですよ！"
@@ -128,6 +128,10 @@ class LinebotController < ApplicationController
           response = "私はくろrailsまんのbotです。　性別はありません。 ちょっとしたことしか話せません　もしわけないとおもってます。"
         elsif event.message['text']&.try!(:include?, "せいべつは") || event.message['text']&.try!(:include?, "おとこ") || event.message['text']&.try!(:include?, "おんな")
           response = "私に性別などありません。 \n あなたがなんて思うかですかね。"
+        elsif event.message['text']&.try!(:include?, "なんで") ||  event.message['text']&.try!(:include?, "理由は")
+          response = "わかりません　ごめんなさい🙇"
+        elsif  event.message['text']&.try!(:include?, "あなた") ||  event.message['text']&.try!(:include?, "おまえ") ||  event.message['text']&.try!(:include?, "きみ")
+          response = "なんですか？"
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。  ]]"
         end
