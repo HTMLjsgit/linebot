@@ -73,9 +73,11 @@ class LinebotController < ApplicationController
         end
         if event.message['text'].include?("あんだーてーる") || event.message['text'].include?("アンダーテール") || event.message['text'].include?("undertale")
           response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
+        end
 
         if event.message['text'].include?("ごめん")
           response = "大丈夫ですよ。"
+        end
 
         if event.message['text'].include?("プログラミングできる")
           response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
@@ -115,13 +117,13 @@ class LinebotController < ApplicationController
         end
         if event.message['text'].include?("さくしゃ")
           response = "私の製作者はくろrailsまんさんです！　本当にありがたいことだと思っております。"
-       end
+        end
         if event.message['text'].include?("グーグル")
           response = "Googleは最高です！"
         end
         if event.message['text'].include?("よろしく")
           response = "よろしくお願いします！"
-       end
+        end
         if event.message['text'].include?("おもしろい")
           client.reply_message(event['replyToken'], www)
         end
@@ -136,7 +138,6 @@ class LinebotController < ApplicationController
         end
         if event.message['text'].include?("ないて")
           client.reply_message(event['reply_message'], naki)
-          response = "#{event.message['text']}...そのようなお言葉は知らないですね。。"
         end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
