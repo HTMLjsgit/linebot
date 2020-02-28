@@ -63,11 +63,12 @@ end
       elsif event.message['text'].include?("スタンプ") || event.message['text'].include?("すたんぷ")
         client.reply_message(event['replyToken'], happySticky)
       else
-        if event.message['text'].blank?
-          response = "いいスタンプですね！"
-        end
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       end
+      if !event.message['events'][10].blank?
+         response = "いいスタンプですね"
+      end
+      puts "=========================================FS=DF==" + event.message['events'][10]
 
       #if文でresponseに送るメッセージを格納
 
