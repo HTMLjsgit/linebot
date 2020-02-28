@@ -11,12 +11,20 @@ class LinebotController < ApplicationController
   end
 
   def happySticky
-  [
-    { "type": "sticker", "packageId": "1", "stickerId": "4" },
-    { "type": "sticker", "packageId": "1", "stickerId": "5" },
-    { "type": "sticker", "packageId": "1", "stickerId": "13" },
-  ].shuffle.first
-end
+    [
+      { "type": "sticker", "packageId": "1", "stickerId": "4" },
+      { "type": "sticker", "packageId": "1", "stickerId": "5" },
+      { "type": "sticker", "packageId": "1", "stickerId": "13" },
+      { "type": "sticker", "packageId": "11537", "stickerId": "52002767"},
+      { "type": "sticker", "packageId": "11537", "stickerId": "52002747"}
+    ].shuffle.first
+  end
+
+  def bye
+    [
+      { "type": "sticker", "packageId": "11538", "stickerId": "51626494" }
+    ]
+  end
 
   def callback
 
@@ -52,8 +60,10 @@ end
         response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
       elsif event.message['text'].include?("さようなら")
         response = "さようならお疲れ様です。"
+        client.reply_message(event['replyToken'], bye)
       elsif event.message['text'].include?("おやすみ")
         response = "おやすみなさい。明日も頑張りましょう"
+        client.reply_message(event['replyToken'], )
       elsif event.message['text'].include?("ありがとう") || event.message['text'].include?("ありがたい")
         response = "どういたしまして"
       elsif event.message['text'].include?("youtube") || event.message['text'].include?("ユーチューブ") || event.message['text'].include?("ゆーちゅーぶ")
@@ -62,7 +72,7 @@ end
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
       elsif event.message['text'].include?("スタンプ") || event.message['text'].include?("すたんぷ")
         client.reply_message(event['replyToken'], happySticky)
-      if !event.message['packageId'].blank?
+      elsif event.message['packageId']
          response = "いいスタンプですね"
       end
       # else
