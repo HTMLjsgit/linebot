@@ -104,7 +104,7 @@ class LinebotController < ApplicationController
         client.reply_message(event['replyToken'], www)
       elsif event.message['text'].include?("なに")
         response = "どうしましたか？　何かご用件のあるようでしたらご遠慮おっしゃって下さい。 "
-      elsif .event.message["text"].include?("ゲーム")
+      elsif event.message["text"].include?("ゲーム")
         response = "ゲームって楽しいんですかね。　やったことないんですけど"
       elsif event.message['text'].include?("しゅくだい")
         client.reply_message(event['reply_message'], homework)
