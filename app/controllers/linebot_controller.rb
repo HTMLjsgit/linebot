@@ -60,7 +60,7 @@ class LinebotController < ApplicationController
         response = "私はプログラミングは。まぁちょこっとだけできますよ! プログラミング言語としては \n javascript ruby c# pythonちょこっとって感じですかね"
       elsif event.message['text'].include?("さようなら")
         response = "さようならお疲れ様です。"
-        client.reply_message(event['replyToken'], bye)
+        client.reply_message(event['replyToken'],bye)
       elsif event.message['text'].include?("おやすみ")
         response = "おやすみなさい。明日も頑張りましょう"
         client.reply_message(event['replyToken'], )
@@ -77,12 +77,11 @@ class LinebotController < ApplicationController
       end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
-      end
+      # end
 
 
 
       #if文でresponseに送るメッセージを格納
-
       case event
       when Line::Bot::Event::Message
         case event.type
