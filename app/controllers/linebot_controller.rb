@@ -51,7 +51,6 @@ class LinebotController < ApplicationController
         response = "どういたしまして"
       elsif event.message['text'].include?("計算モード")
         response = "数字を入力してください。　１２３　などではなく　1 2 3 と　半角にしてください。"
-        if event.message['text'].
            n = event.message['text'].to_i
            if event.message['text'].include?("#{n}")
             response = "+ か　- か ÷　か　×　か　を選択して、送信して下さい。"
@@ -64,7 +63,6 @@ class LinebotController < ApplicationController
               end
             end
            end
-        end
       else
         response = @post.name
       end
