@@ -25,7 +25,7 @@ class LinebotController < ApplicationController
   end
 
   def sleepda
-      { "type": "sticker", "packageId": "11538", "stickerId": "52114121" }
+      { "type": "sticker", "packageId": "11538", "stickerId": "51626513" }
   end
 
   def homework
@@ -80,7 +80,7 @@ class LinebotController < ApplicationController
           response = "さようならお疲れ様です。"
           client.reply_message(event['replyToken'],bye)
         elsif event.message['text']&.try!(:include?, "おやすみ")
-          client.reply_message(event['replyToken'], sleepda)
+          client.reply_message(event['replyToken'],sleepda)
           response = "おやすみなさい。起きた後も頑張りましょう"
         elsif event.message['text']&.try!(:include?, "ありがとう")
           response = "どういたしまして"
@@ -138,6 +138,14 @@ class LinebotController < ApplicationController
           response = "なにをですか？"
         elsif event.message['text']&.try!(:include?, "へぇ") || event.message['text']&.try!(:include?, "へえ") || event.message['text']&.try!(:include?, "ほほう") || event.message['text']&.try!(:include?, "あの") || event.message['text']&.try!(:include?, "きいて") || event.message['text']&.try!(:include?, "きけ")
           response = "はい！"
+        elsif event.message['text']&.try!(:include?, "いたい") || event.message['text']&.try!(:include?, "いた") 
+          response = "大丈夫ですか？病院いきますか？"
+        elsif event.message['text']&.try!(:include?, "だいじょうぶ") 
+          response = "そうですか　よかったです"
+        elsif event.message['text']&.try!(:include?, "つまんない") || event.message['text']&.try!(:include?, "つまらん") 
+          response = "そうですか。。　それは大変申し訳ございません。"
+        elsif event.message['text']&.try!(:include?, "つかれた") || event.message['text']&.try!(:include?, "つかれる")
+          response = "お休みになられたほうがいいですよ。。"
        else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。  ]]"
         end
