@@ -37,7 +37,7 @@ class LinebotController < ApplicationController
         response = "私はくろrailsまんのbotです。"
       elsif event.message['text'].include?("おい")
         response = "どうかいたしましたか？"
-      elsif event.message['text'].include?("あんだーてーる") || event.messgae['text'].include?("アンダーテール") || event.message['text'].include?("undertale")
+      elsif event.message['text'].include?("あんだーてーる") || event.message['text'].include?("アンダーテール") || event.message['text'].include?("undertale")
         response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
       elsif event.message['text'].include?("ごめん")
         response = "大丈夫ですよ。"
