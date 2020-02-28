@@ -130,9 +130,15 @@ class LinebotController < ApplicationController
           response = "私に性別などありません。 \n あなたがなんて思うかですかね。"
         elsif event.message['text']&.try!(:include?, "なんで") ||  event.message['text']&.try!(:include?, "理由は")
           response = "わかりません　ごめんなさい🙇"
-        elsif  event.message['text']&.try!(:include?, "あなた") ||  event.message['text']&.try!(:include?, "おまえ") ||  event.message['text']&.try!(:include?, "きみ")
+        elsif event.message['text']&.try!(:include?, "あなた") ||  event.message['text']&.try!(:include?, "おまえ") ||  event.message['text']&.try!(:include?, "きみ")
           response = "なんですか？"
-        else
+        elsif event.message['text'] == "あのさ"
+          response = "はい！"
+        elsif event.message['text']&.try!(:include?, "つかう")
+          response = "なにをですか？"
+        elsif event.message['text']&.try!(:include?, "へぇ") || event.message['text']&.try!(:include?, "へえ") || event.message['text']&.try!(:include?, "ほほう")
+          response = "はい！"
+       else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。  ]]"
         end
       # else
