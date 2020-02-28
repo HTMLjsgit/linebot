@@ -56,6 +56,7 @@ class LinebotController < ApplicationController
 
     events.each { |event|
         # event.message['text']でLINEで送られてきた文書を取得
+      event.message['text'].try!(:include)
         if event.message['text']&.include?("こんにちは")
           response = "どうもこんにちは私はくろrailsまんのbotでございます。"
         elsif event.message["text"]&.include?("いってきます")
@@ -76,7 +77,7 @@ class LinebotController < ApplicationController
           response = "さようならお疲れ様です。"
           client.reply_message(event['replyToken'],bye)
         elsif event.message['text'].include?("おやすみ")
-          client.reply_message(event['replyToken'], sleep)
+          client.reply_message(event['replyToken'], sleepda)
           response = "おやすみなさい。起きた後も頑張りましょう"
         elsif event.message['text'].include?("ありがとう") || event.message['text'].include?("ありがたい")
           response = "どういたしまして"
