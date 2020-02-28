@@ -77,6 +77,7 @@ end
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
+            packageId: 'packageId',
             text: response
           }
           client.reply_message(event['replyToken'], message)
