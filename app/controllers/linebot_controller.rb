@@ -25,19 +25,19 @@ class LinebotController < ApplicationController
   end
 
   def sleep
-      { "type": "sticker", "packageId": "11538", "stickerId": "52114121"}
+      { "type": "sticker", "packageId": "11538", "stickerId": "52114121" }
   end
 
   def homework
-    {"type": "sticker", "packageId": "11538", "stickerId": "51626525"}
+    {"type": "sticker", "packageId": "11538", "stickerId": "51626525" }
   end
 
   def www
-    { "type": "sticker", "packageId": "11538", "stickerId": "51626504"}
+    { "type": "sticker", "packageId": "11538", "stickerId": "51626504" }
   end
 
   def naki
-    { "type": "sticker", "packageId" : "11538", "stickerId": "51626529"}
+    { "type": "sticker", "packageId": "11538", "stickerId": "51626529" }
   end
 
   def callback
@@ -106,8 +106,6 @@ class LinebotController < ApplicationController
         response = "どうしましたか？　何かご用件のあるようでしたらご遠慮おっしゃって下さい。 "
       elsif event.message['text'].include?("げーむ") || event.message["text"].include?("ゲーム")
         response = "ゲームって楽しいんですかね。　やったことないんですけど"
-      elsif event.message['text'] == "docuemnt.getElementById"
-        response = "javascript コード　document.getElementById ID要素を取得する"
       elsif event.message['text'].include?("しゅくだい")
         client.reply_message(event['reply_message'], homework)
       elsif event.message['text'].include?("ないて") || event.message['text'].include?("なけ")
@@ -136,8 +134,5 @@ class LinebotController < ApplicationController
     }
 
     head :ok
-  end
-  private
-  def template
   end
 end
