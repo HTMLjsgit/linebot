@@ -202,9 +202,9 @@ class LinebotController < ApplicationController
           puts event.message['text']
           puts "~======================== + #{url}"
           jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
-          json = oepn(jsonURL).read
+          json = open(jsonURL).read
           objs = JSON.parse(json)
-          puts "=========================== + #{objs}"
+          puts "=========================== + #{objs.to_s}"
           viewcount = objs['items'][0]['statistics']['viewCount'].to_s
           response = "その動画の視聴回数 #{viewcount} です"
         else
