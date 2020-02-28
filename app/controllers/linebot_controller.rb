@@ -209,7 +209,7 @@ class LinebotController < ApplicationController
           channelid = objs['items'][0]['snippet']['channelId']
           channelname = objs['items'][0]['snippet']['channelTitle']
 
-          response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount}です \n その動画のチャンネル名: #{channelname}です \n  この動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
+          response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         elsif event.message['text']&.try!(:include?, "https://youtu.be/")
           urlmake = event.message['text'].to_s
           # url = urlmake.gsub(/http.+v=/, "")
@@ -225,7 +225,7 @@ class LinebotController < ApplicationController
           channelname = objs['items'][0]['snippet']['channelTitle']
           channelid = objs['items'][0]['snippet']['channelId']
 
-          response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount}です \n その動画のチャンネル名: #{channelname}です \n  この動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
+          response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
         end
