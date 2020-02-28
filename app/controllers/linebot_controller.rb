@@ -140,7 +140,7 @@ class LinebotController < ApplicationController
           response = "はい！"
         elsif event.message['text']&.try!(:include?, "いたい") || event.message['text']&.try!(:include?, "いた") 
           response = "大丈夫ですか？病院いきますか？"
-        elsif event.message['text']&.try!(:include?, "だいじょうぶ") 
+        elsif event.message['text']&.try!(:include?, "だいじょうぶ")
           response = "そうですか　よかったです"
         elsif event.message['text']&.try!(:include?, "つまんない") || event.message['text']&.try!(:include?, "つまらん") 
           response = "そうですか。。　それは大変申し訳ございません。"
@@ -175,10 +175,10 @@ class LinebotController < ApplicationController
         elsif event.message['text']&.try!(:include?, "ウェブ")
           response = "ウェブサービスは最高です！　\n\n https://asobisarchapp.herokuapp.com \n\n https://oretube.herokuapp.com \n\n https://identweb.herokuapp.com"
         elsif event.message['text']&.try!(:include?, "けっこんして")
-          response = "むりです"
+          response = "むりですごめんなさい"
         elsif event.message['text']&.try!(:include?, "おすすめ")
           response = "私おすすめのウェブサービス \n\n https://identweb.https://identweb.herokuapp.com"
-        elsif event.message['text']&.try!(:include?, "は？") || event.message['text']&.try!(:include?, "は?") || event.message['text']&.try!(:include?, "だまれ")　
+        elsif event.message['text']&.try!(:include?, "は？") || event.message['text']&.try!(:include?, "は?") || event.message['text']&.try!(:include?, "だまれ")
           response = "すみません。。。"
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
