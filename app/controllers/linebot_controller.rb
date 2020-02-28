@@ -226,6 +226,22 @@ class LinebotController < ApplicationController
           channelid = objs['items'][0]['snippet']['channelId']
 
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
+        elsif event.message['text']&.try!(:include?, "https://m.youtube.com/watch?v=")
+                    urlmake = event.message['text'].to_s
+          url = urlmake.gsub(/http.+v=/, "")
+          #url = url.gsub(/http.+be./, "")
+          jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
+          puts "=======================" + jsonURL
+          json = open(jsonURL).read
+          objs = JSON.parse(json.to_s)
+
+          viewcount = objs['items'][0]['statistics']['viewCount'].to_s
+          likecount = objs['items'][0]['statistics']['likeCount'].to_s
+          dislikecount = objs['items'][0]['statistics']['dislikeCount'].to_s
+          channelid = objs['items'][0]['snippet']['channelId']
+          channelname = objs['items'][0]['snippet']['channelTitle']
+
+          response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
         end
