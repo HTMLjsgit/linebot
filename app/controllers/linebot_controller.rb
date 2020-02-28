@@ -147,6 +147,10 @@ class LinebotController < ApplicationController
           response = "お休みになられたほうがいいですよ。。"
         elsif event.message['text']&.try!(:include?, "たいへん") || event.message['text']&.try!(:include?, "なんていうことだ")
           response = "どうしました！？？！？！？！？"
+        elsif event.message['text']&.try!(:include?, "てんき")
+          response = "今日の天気は最高ですね！"
+        elsif event.message['text']&.try!(:include?, "たのしい")
+          response = "そうですか！それはよかったですね！"
        else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
         end
