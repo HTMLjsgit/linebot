@@ -37,7 +37,7 @@ class LinebotController < ApplicationController
         response = "私はくろrailsまんのbotです。"
       elsif event.message['text'].include?("おい")
         response = "どうかいたしましたか？"
-      elsif event.message['text'].include?("あんだーてーる")
+      elsif event.message['text'].include?("あんだーてーる") || event.messgae['text'].include?("アンダーテール") || event.message['text'].include?("undertale")
         response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
       elsif event.message['text'].include?("ごめん")
         response = "大丈夫ですよ。"
@@ -49,20 +49,8 @@ class LinebotController < ApplicationController
         response = "おやすみなさい。明日も頑張りましょう"
       elsif event.message['text'].include?("ありがとう")
         response = "どういたしまして"
-      elsif event.message['text'].include?("計算モード")
-        response = "数字を入力してください。　１２３　などではなく　1 2 3 と　半角にしてください。"
-           n = event.message['text'].to_i
-           if event.message['text'].include?("#{n}")
-            response = "+ か　- か ÷　か　×　か　を選択して、送信して下さい。"
-            if event.message['text'].include?("+")
-              n2 = event.message['text'].to_i
-              response = "もう一つ数値を入力してください。現在　#{n}"
-              if event.message['text'].include?("#{n2}")
-                kekka = n + n2
-                response = "#{kekka}" + "でした！"
-              end
-            end
-           end
+      elsif event.message['text'].include?("youtube") || event.message['text'].include?("ユーチューブ") || event.message['text'].include?("ゆーちゅーぶ")
+        response = "#{event.message['text']}って最高ですよね！　https://youtube.com"
       else
         response = @post.name
       end
