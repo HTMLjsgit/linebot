@@ -62,7 +62,7 @@ end
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
       elsif event.message['text'].include?("スタンプ") || event.message['text'].include?("すたんぷ")
         client.reply_message(event['replyToken'], happySticky)
-      elsif !event.message['type'][0]['sticker']['packageId'].blank?
+      elsif event.message['text'].blank?
         response = "いいスタンプですね！"
       else
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
