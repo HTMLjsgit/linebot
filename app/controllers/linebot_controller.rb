@@ -21,9 +21,7 @@ class LinebotController < ApplicationController
   end
 
   def bye
-    [
       { "type": "sticker", "packageId": "11538", "stickerId": "51626494" }
-    ]
   end
 
   def callback
