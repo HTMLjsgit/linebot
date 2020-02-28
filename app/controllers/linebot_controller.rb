@@ -126,7 +126,7 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], angry)
         elsif event.message['text']&.try!(:include?, "じこしょうかい")
           response = "私はくろrailsまんのbotです。　性別はありません。 ちょっとしたことしか話せません　もしわけないとおもってます。"
-        elsif event.message['text']&.try!(:include?, "せいべつは") || event.message['text']&.try!(:include?, "おとこ") event.message['text']&.try!(:include?, "おんな")
+        elsif event.message['text']&.try!(:include?, "せいべつは") || event.message['text']&.try!(:include?, "おとこ") || event.message['text']&.try!(:include?, "おんな")
           response = "私に性別などありません。 \n あなたがなんて思うかですかね。"
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。  ]]"
