@@ -197,9 +197,12 @@ class LinebotController < ApplicationController
         elsif event.message['text']&.try!(:include?, "https://www.youtube.com/watch?v=") ||  event.message['text']&.try!(:include?, "https://youtu.be/")
           urll = event.message['text'].gsub(/http.+v=/, "")
           url = url.gsub(/http.+be./, "")
+          puts event.message['text']
+          puts "~======================== + #{url}"
           jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
           json = oepn(jsonURL).read
           objs = JSON.parse(json)
+          puts "=========================== + #{objs}"
           viewcount = objs['items'][0]['statistics']['viewCount'].to_s
           response = "その動画の視聴回数 #{viewcount} です"
         else
