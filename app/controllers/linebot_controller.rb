@@ -205,7 +205,7 @@ class LinebotController < ApplicationController
         elsif event.message['text']&.try!(:include?, "https://youtu.be/")
           urlmake = event.message['text'].to_s
           # url = urlmake.gsub(/http.+v=/, "")
-          url = url.gsub(/http.+be./, "")
+          url = urlmake.gsub(/http.+be./, "")
           jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
           json = open(jsonURL).read
           objs = JSON.parse(json.to_s)
