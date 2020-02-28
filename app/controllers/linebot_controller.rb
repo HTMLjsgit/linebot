@@ -178,7 +178,7 @@ class LinebotController < ApplicationController
           response = "むりです"
         elsif event.message['text']&.try!(:include?, "おすすめ")
           response = "私おすすめのウェブサービス \n\n https://identweb.https://identweb.herokuapp.com"
-        elsif event.message['text']&.try!(:include?, "は？")　|| event.message['text']&.try!(:include?, "は?")event.message['text']&.try!(:include?, "だまれ")　
+        elsif event.message['text']&.try!(:include?, "は？") || event.message['text']&.try!(:include?, "は?") || event.message['text']&.try!(:include?, "だまれ")　
           response = "すみません。。。"
         else
           response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
