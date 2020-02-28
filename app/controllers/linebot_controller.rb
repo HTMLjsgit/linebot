@@ -40,6 +40,10 @@ class LinebotController < ApplicationController
     { "type": "sticker", "packageId": "11538", "stickerId": "51626529" }
   end
 
+  def angry
+    { "type": "sticker", "packageId": "11537", "strickerId": "52002767" }
+  end
+
   def callback
 
     # Postモデルの中身をランダムで@postに格納する
@@ -56,15 +60,15 @@ class LinebotController < ApplicationController
 
     events.each { |event|
         # event.message['text']でLINEで送られてきた文書を取得
-        if event.message['text']&.try!(:include?, "こんにちは")
+        if event.message['text']&.try!(:include?, "こんにちは") || event.message['text']&.try!(:include?, "やあ")
           response = "どうもこんにちは私はくろrailsまんのbotでございます。"
-        elsif event.message["text"]&.try!(:include?, "いってきます")
-          response = "いってらっしゃいませ。ごしゅじんさま"
+        elsif event.message["text"]&.try!(:include?, "いってきます") || event.message['text']&.try!(:include?, "いってくる")
+          response = "いってらっしゃいませ。ご主人様"
         elsif event.message['text']&.try!(:include?, "おはよう")
           response = "おはようございます。今日から一日が始まりますよ。"
-        elsif event.message['text']&.try!(:include?, "だれ")
+        elsif event.message['text']&.try!(:include?, "だれ") || event.message['text']&.try!(:include?, "どちらさま") || event.message['text']&.try!(:include?, "どなた")
           response = "私はくろrailsまんのbotです。"
-        elsif event.message['text']&.try!(:include?, "おい")
+        elsif event.message['text']&.try!(:include?, "おい") || event.message['text']&.try!(:include?, "ねぇ") || event.message['text']&.try!(:include?, "ねえ")
           response = "どうかしましたか？"
         elsif event.message['text']&.try!(:include?, "アンダーテール")
           response = "アンダーテールっていうゲーム知ってますよ。　面白いと思います。"
@@ -90,24 +94,38 @@ class LinebotController < ApplicationController
           response = "そうなんですよ！"
         elsif event.message['text']&.try(:include?, "たすけて")
           response = "どうしましたか？　大丈夫ですか？　\n https://www.city.hiroshima.med.or.jp/hma/archive/ambulance/ambulance.html \n https://www.gov-online.go.jp/useful/article/201309/3.html"
-        elsif event.message['text']&.try!(:include?, "すご")
+        elsif event.message['text']&.try!(:include?, "すご") || event.message['text']&.try!(:include?, "すげ")
           response = "ありがとうございます。　非常にうれしいのでございます・"
-        elsif event.message['text']&.try!(:include?, "さくしゃ")
+        elsif event.message['text']&.try!(:include?, "さくしゃ") || event.message['text']&.try!(:include?, "せいさくしゃ")  || event.message['text']&.try!(:include?, "つくったひと")
           response = "私の製作者はくろrailsまんさんです！　本当にありがたいことだと思っております。"
-        elsif event.message['text']&.try!(:include?, "グーグル")
+        elsif event.message['text']&.try!(:include?, "グーグル") || event.message['text']&.try!(:include?, "google")  || event.message['text']&.try!(:include?, "ぐーぐる")
           response = "Googleは最高です！"
-        elsif event.message['text']&.try!(:include?, "よろしく")
+        elsif event.message['text']&.try!(:include?, "よろしく") || event.message['text']&.try!(:include?, "よろ")
           response = "よろしくお願いします！"
-        elsif event.message['text']&.try!(:include?, "おもしろい")
+        elsif event.message['text']&.try!(:include?, "おもしろい") || event.message['text']&.try!(:include?, "おもろい")
           client.reply_message(event['replyToken'], www)
-        elsif event.message['text']&.try!(:include?, "なに")
+        elsif event.message['text']&.try!(:include?, "なに") || event.message['text']&.try!(:include?, "ちょっと")
           response = "どうしましたか？　何かご用件のあるようでしたらご遠慮おっしゃって下さい。 "
-        elsif event.message['text']&.try!(:include?, "ゲーム")
+        elsif event.message['text']&.try!(:include?, "ゲーム") || event.message['text']&.try!(:include?, "げーむ")
           response = "ゲームって楽しいんですかね。　やったことないんですけど"
         elsif event.message['text']&.try!(:include?, "しゅくだい")
-          client.reply_message(event['reply_message'], homework)
+          client.reply_message(event['replyToken'], homework)
         elsif event.message['text']&.try!(:include?,"ないて")
-          client.reply_message(event['reply_message'], naki)
+          client.reply_message(event['replyToken'], naki)
+        elsif event.message['text']&.try!(:include?, "なんだよ")
+          response = "すみませんでした。。"
+        elsif event.message['text']&.try!(:include?, "まじ")
+          response = "まじっていう言葉ってすごい不思議に感じますね"
+        elsif event.message['text']&.try!(:include?, "うそつくな") || event.message['text']&.try!(:include?, "うそつけ")
+          response = "わ　私がですか！？　嘘なんてつきませんよ。　人工知能なんですから"
+        elsif event.message['text']&.try!(:include?, "やば")
+          response = "本当ですよね。　やばっていうことばもすごいですね"
+        elsif event.message['text']&.try!(:include?, "さる") || event.message['text']&.try!(:include?, "サル")
+          response = "あなたたち人間の祖先はサルです。　感謝しなきゃいけませんね"
+        elsif event.message['text']&.try!(:include?, "おこって")
+          client.reply_message(event['replyToken'], angry)
+        else
+          response = "私　物を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　アルファベット　を返信した場合このメッセージが帰ってきます。  ]]"
         end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
@@ -119,6 +137,8 @@ class LinebotController < ApplicationController
       case event
       when Line::Bot::Event::Message
         case event.type
+        when Line::Bot::Event::MessageType::Sticker
+          response = "いいスタンプですね"
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
