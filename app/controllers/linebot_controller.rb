@@ -1,6 +1,5 @@
 class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
-  require 'mechanize'
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
 
@@ -9,12 +8,6 @@ class LinebotController < ApplicationController
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
       config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
-  end
-
-  AGENT = Mechanize.new
-  BASE_URL = 'https://yomikatawa.com/kanji/'
-  def to_hiragana(kanji)
-     AGENT.get(BASE_URL + kanji).search('#content p').first.inner_text
   end
   def callback
 
@@ -30,7 +23,6 @@ class LinebotController < ApplicationController
     events = client.parse_events_from(body)
 
     events.each { |event|
-      event.message['text'] = to_hiragana(event.message['text'])
       # event.message['text']でLINEで送られてきた文書を取得
       if event.message['text'].include?("こんにちは")
         response = "どうもこんにちは私はくろrailsまんのbotでございます。"
