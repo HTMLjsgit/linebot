@@ -61,7 +61,7 @@ end
       elsif event.message['text'].include?("おもしろいはなしして")
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
       elsif event.message['text'].include?("スタンプおくって")
-        client.reply_message(event['replyToken'], [happySticky, packageId])
+        client.reply_message(event['replyToken'], happySticky)
       else
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       end
@@ -78,7 +78,6 @@ end
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
-            packageId: packageId,
             text: response
           }
           client.reply_message(event['replyToken'], message)
@@ -87,5 +86,8 @@ end
     }
 
     head :ok
+  end
+  private
+  def template
   end
 end
