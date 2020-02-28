@@ -11,6 +11,8 @@ class LinebotController < ApplicationController
     }
   end
 
+  AGENT = Mechanize.new
+  BASE_URL = 'https://yomikatawa.com/kanji/'
   def to_hiragana(kanji)
      AGENT.get(BASE_URL + kanji).search('#content p').first.inner_text
   end
