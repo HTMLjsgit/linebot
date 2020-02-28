@@ -88,7 +88,7 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], sleepda)
         elsif event.message['text']&.try!(:include?, "ありがとう")
           response = "どういたしまして"
-        elsif event.message['text']&.try!(:include?, "youtube") || event.message['text']&.try!(:include?, "ユーチューブ") || event.message['text']&.try!(:include?, "ゆーちゅーぶ")
+        elsif event.message['text']&.try!(:include?, "ユーチューブ") || event.message['text']&.try!(:include?, "ゆーちゅーぶ")
           response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
         elsif event.message['text']&.try!(:include?, "はなして")
           response = "話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
