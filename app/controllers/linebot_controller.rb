@@ -60,14 +60,12 @@ end
         response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
       elsif event.message['text'].include?("おもしろいはなしして")
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
-      elsif event.message['text'].include?("スタンプおくって")
+      elsif event.message['text'].include?("スタンプ") || event.message['text'].include?("すたんぷ")
         client.reply_message(event['replyToken'], happySticky)
+      elsif !event.message['type'][0]['sticker']['packageId'].blank?
+        response = "いいスタンプですね！"
       else
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
-      end
-      if event.message['packageId']
-        puts "==========ここまできたなスタンプおくったあよおおおおお==========="
-        response = "素晴らしいスタンプですね！"
       end
 
       #if文でresponseに送るメッセージを格納
