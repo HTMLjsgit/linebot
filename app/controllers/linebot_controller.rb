@@ -9,6 +9,12 @@ class LinebotController < ApplicationController
       config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
   end
+
+  def happySticky
+    [
+      { "type": "sticker", "packageId": "1", "stickerId": "4"}
+    ].shuffle.first
+  end
   def callback
 
     # Postモデルの中身をランダムで@postに格納する
@@ -24,7 +30,7 @@ class LinebotController < ApplicationController
 
     events.each { |event|
       # event.message['text']でLINEで送られてきた文書を取得
-      if event.message['text'].include?("こんにちは")
+      if event.message['text'].include?("こんにちは") || event.message['text'].include?("やぁ") || event.message['text'].include?("やあ")
         response = "どうもこんにちは私はくろrailsまんのbotでございます。"
       elsif event.message["text"].include?("いってきます")
         response = "いってらっしゃいませ。ごしゅじんさま"
@@ -50,6 +56,8 @@ class LinebotController < ApplicationController
         response = "#{event.message['text']}って最高ですよね！\n \n https://youtube.com"
       elsif event.message['text'].include?("おもしろいはなしして")
         response = "面白い話なんてありませんよ(笑) \n　面白いことなんてめったにおこらないんですからね。。"
+      elsif event.message['text'].include?("スタンプおくって")
+        client.reply_message(event['replyToken'], [happySticky, response])
       else
         response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       end
