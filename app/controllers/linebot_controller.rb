@@ -148,7 +148,7 @@ class LinebotController < ApplicationController
           response = "そうですか　よかったです"
         elsif event.message['text']&.try!(:include?, "つまんない") || event.message['text']&.try!(:include?, "つまらん") 
           response = "そうですか。。　それは大変申し訳ございません。"
-        elsif event.message['text']&.try!(:include?, "つかれた") || event.message['text']&.try!(:include?, "つかれる")
+        elsif event.message['text']&.try!(:include?, "つかれた") || event.message['text']&.try!(:include?, "つかれる") || vent.message['text']&.try!(:include?, "ねむ")
           response = "お休みになられたほうがいいですよ。。"
         elsif event.message['text']&.try!(:include?, "たいへん") || event.message['text']&.try!(:include?, "なんていうことだ")
           response = "どうしました！？？！？！？！？"
@@ -194,6 +194,19 @@ class LinebotController < ApplicationController
           response = "明日もいい日になるといいですね"
         elsif event.message['text']&.try!(:include?, "れきし")
           response = "人間の歴史は非常に興味深いものですね"
+        elsif event.message['text']&.try!(:include?, "さみしい") || event.message['text']&.try!(:include?, "かなしい")
+          response = "大丈夫ですよ！　私がついています！"
+        elsif event.message['text']&.try!(:include?, "おかあさん") || event.message['text']&.try!(:include?, "おとうさん") event.message['text']&.try!(:include?, "パパ") || event.message['text']&.try!(:include?, "ママ")
+          response = "私に母や父　そう　家族はいません。　\n もとから一人で作られてきました。 \n でも全然寂しくないですよ！　だってあなたがいてくれるおかげですもん！"
+        elsif event.message['text']&.try!(:include?, "かわいい") || event.message['text']&.try!(:include?, "かっこいい")
+          response = "そうですか？　ありがとうございます。"
+        elsif event.message['text']&.try!(:include?, "かわった")
+          response = "私がですか？"
+        elsif event.message['text']&.try!(:include?, "おかしい")
+          response = "私のどこがおかしいですか？"
+        elsif event.message['text']&.try!(:include?, "パソコン") || event.message['text']&.try!(:include?, "pc") || event.message['text']&.try!(:include?, "パーソナルコンピューター")
+          responce = "私はパソコンによって作られました。　パソコンってすごいですね"
+          response = ""
         elsif event.message['text']&.try!(:include?, "https://www.youtube.com/watch?v=")
           urlmake = event.message['text'].to_s
           url = urlmake.gsub(/http.+v=/, "")
@@ -227,7 +240,7 @@ class LinebotController < ApplicationController
 
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         elsif event.message['text']&.try!(:include?, "https://m.youtube.com/watch?v=")
-                    urlmake = event.message['text'].to_s
+          urlmake = event.message['text'].to_s
           url = urlmake.gsub(/http.+v=/, "")
           #url = url.gsub(/http.+be./, "")
           jsonURL = 'https://www.googleapis.com/youtube/v3/videos?id=' + url + '&key=' + ENV['APIKEY'] + '&part=snippet,contentDetails,statistics'
