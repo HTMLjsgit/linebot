@@ -196,7 +196,7 @@ class LinebotController < ApplicationController
           response = "人間の歴史は非常に興味深いものですね"
         elsif event.message['text']&.try!(:include?, "さみしい") || event.message['text']&.try!(:include?, "かなしい")
           response = "大丈夫ですよ！　私がついています！"
-        elsif event.message['text']&.try!(:include?, "おかあさん") || event.message['text']&.try!(:include?, "おとうさん") event.message['text']&.try!(:include?, "パパ") || event.message['text']&.try!(:include?, "ママ")
+        elsif event.message['text']&.try!(:include?, "おかあさん") || event.message['text']&.try!(:include?, "おとうさん") || event.message['text']&.try!(:include?, "パパ") || event.message['text']&.try!(:include?, "ママ")
           response = "私に母や父　そう　家族はいません。　\n もとから一人で作られてきました。 \n でも全然寂しくないですよ！　だってあなたがいてくれるおかげですもん！"
         elsif event.message['text']&.try!(:include?, "かわいい") || event.message['text']&.try!(:include?, "かっこいい")
           response = "そうですか？　ありがとうございます。"
