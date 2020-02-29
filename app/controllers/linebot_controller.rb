@@ -151,6 +151,7 @@ class LinebotController < ApplicationController
         elsif event.message['text']&.try!(:include?, "つかれた") || event.message['text']&.try!(:include?, "つかれる") || event.message['text']&.try!(:include?, "ねむ")
           response = "お休みになられたほうがいいですよ。。"
         elsif event.message['text']&.try!(:include?, "こんばんわ") ||event.message['text']&.try!(:include?, "こんばんは")
+          response = "こんばんは"
         elsif event.message['text']&.try!(:include?, "たいへん") || event.message['text']&.try!(:include?, "なんていうことだ")
           response = "どうしました！？？！？！？！？"
         elsif event.message['text']&.try!(:include?, "てんき")
