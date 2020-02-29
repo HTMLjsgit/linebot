@@ -50,15 +50,6 @@ class LinebotController < ApplicationController
   end
 
   def random
-      srand(3)
-      random = rand(3)
-      if random == 3
-          response = "そういえば、くろrailsまん(作者)はpythonやC#もやってるんですよ！ \n 私と同じですね！"
-      elsif random == 2
-           response = "くろrailsまん(作者)は将棋が好きみたいです！ \n いいですよねぇ"
-      else
-          response = "くろrailsまん(作者)が一番好きゲームはゼルダの伝説ブレスオブワイルドらしいです！ \n いいですよねぇ"
-      end
   end
 
   def callback
@@ -272,8 +263,15 @@ class LinebotController < ApplicationController
 
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         else
-          random()
-        end
+          random = Random.new
+          r = random.rand(1..3)
+          if r == 1
+              response = "そういえば、くろrailsまん(作者)はpythonやC#もやってるんですよ！ \n 私と同じですね！"
+            elsif r == 2
+              response = "くろrailsまん(作者)が一番好きゲームはゼルダの伝説ブレスオブワイルドらしいです！ \n いいですよねぇ"
+            else
+              response = "くろrailsまん(作者)は将棋が好きみたいです！ \n いいですよねぇ"
+          end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       # end
