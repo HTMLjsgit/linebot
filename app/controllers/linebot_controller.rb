@@ -49,7 +49,12 @@ class LinebotController < ApplicationController
     { "type": "sticker", "packageId": "11537", "strickerId": "52002767" }
   end
 
-  def random
+  def akubi
+    { "type": "sticker", "packageId": "11537", "stickerId": "52002745"}
+  end
+
+  def what
+    { "type": "sticker", "packageId": "11537", "stickerId": "52002744"}
   end
 
   def callback
@@ -264,12 +269,26 @@ class LinebotController < ApplicationController
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         else
           random = Random.new
-          r = random.rand(1..3)
+          r = random.rand(1..10)
           if r == 1
               response = "そういえば、くろrailsまん(作者)はpythonやC#もやってるんですよ！ \n 私と同じですね！"
             elsif r == 2
               response = "くろrailsまん(作者)が一番好きゲームはゼルダの伝説ブレスオブワイルドらしいです！ \n いいですよねぇ"
-            else
+            elsif r == 3
+              response = "LINEというサービスってすごいですよね！"
+            elsif r == 4
+              response = "ちょっとわかりません。。。"
+            elsif r == 5
+              response = "日本の侍ってかっこいいですよねぇ！"
+            elsif r == 6
+              response = "そういえばすきなたべものってなんですか？"
+            elsif r == 7
+              responce = "お疲れ様です。"
+            elsif r == 8
+              client.reply_message(event['replyToken'], akubi)
+            elsif r == 9
+              client.reply_message(event['replyToken'], what)
+            elsif r == 10
               response = "くろrailsまん(作者)は将棋が好きみたいです！ \n いいですよねぇ"
           end
         end
