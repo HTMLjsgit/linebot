@@ -261,7 +261,9 @@ class LinebotController < ApplicationController
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         else
           srand(88)
-            if rand(1..10) == 10
+          random = rand(1..3)
+          puts "=========#{random}==="
+            if random == 3
               puts "====================-１０です"
             else
               puts "それいがいでした==============="
