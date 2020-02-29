@@ -273,7 +273,7 @@ class LinebotController < ApplicationController
           if r == 1
               response = "そういえば、くろrailsまん(作者)はpythonやC#もやってるんですよ！ \n 私と同じですね！"
             elsif r == 2
-              response = "くろrailsまん(作者)が一番好きゲームはゼルダの伝説ブレスオブワイルドらしいです！ \n いいですよねぇ"
+              response = "くろrailsまん(作者)が一番好きなゲームはゼルダの伝説ブレスオブワイルドらしいです！ \n いいですよねぇ"
             elsif r == 3
               response = "LINEというサービスってすごいですよね！"
             elsif r == 4
