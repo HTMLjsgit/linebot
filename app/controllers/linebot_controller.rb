@@ -260,15 +260,15 @@ class LinebotController < ApplicationController
 
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         else
-          srand(88)
-          random = rand(1..3)
-          puts "=========#{random}==="
+          srand(3)
+          random = rand(3)
             if random == 3
-              puts "====================-１０です"
+              response = "そういえば、くろrailsまん(作者)はpythonやC#もやってるんですよ！ \n 私と同じですね！"
+            elsif random == 2
+              response = "くろrailsまん(作者)は将棋が好きみたいです！ \n いいですよねぇ"
             else
-              puts "それいがいでした==============="
+              response = "くろrailsまん(作者)が一番好きゲームはゼルダの伝説ブレスオブワイルドらしいです！ \n いいですよねぇ"
             end
-          response = ""
         end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
