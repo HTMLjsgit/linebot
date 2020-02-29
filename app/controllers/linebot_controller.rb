@@ -182,8 +182,10 @@ class LinebotController < ApplicationController
           response = "ウェブサービスは最高です！　\n\n https://asobisarchapp.herokuapp.com \n\n https://oretube.herokuapp.com \n\n https://identweb.herokuapp.com"
         elsif event.message['text']&.try!(:include?, "けっこんして") || event.message['text']&.try!(:include?, "つきあって")
           response = "むりですごめんなさい"
-        elsif event.message['text']&.try!(:include?, "おすすめ")
-          response = "私おすすめのウェブサービス \n\n https://identweb.https://identweb.herokuapp.com"
+        elsif event.message['text']&.try!(:include?, "おすすめのサイト")
+          response = "私おすすめのウェブサービス \n\n https://identweb.herokuapp.com  \n \n https://identweb.herokuapp.com"
+        elsif event.message['text']&.try!(:include?, "おすすめのどうが")
+          responce = "私おすすめの動画 \n\n https://youtube"
         elsif event.message['text']&.try!(:include?, "は？") || event.message['text']&.try!(:include?, "うるさい") || event.message['text']&.try!(:include?, "だまれ")
           response = "すみません。。。"
         elsif event.message['text']&.try!(:include?, "なめるな") || event.message['text']&.try!(:include?, "なめんな") || event.message['text']&.try!(:include?, "なめないで")
@@ -258,7 +260,15 @@ class LinebotController < ApplicationController
 
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
         else
-          response = "私　言葉を全く知らないんです #{event.message['text']}　ってなんですか？ \n \n [[  ちなみに漢字　用意されていない言葉　アルファベット　を返信した場合もこのメッセージが帰ってきます。 ひらがなで入力してください　 ]]"
+          10.times do
+            random =  rando(10)
+          end
+            if random == 10
+              puts "====================-１０です"
+            else
+              puts "それいがいでした==============="
+            end
+          response = ""
         end
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
