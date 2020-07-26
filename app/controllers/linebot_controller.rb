@@ -280,8 +280,37 @@ class LinebotController < ApplicationController
         elsif event.message['text']&.try(:include?, "チャット") || event.message['text']&.try(:include?, "ちゃっと")
         	response = "チャットサイトですか？　ならKuroonRailsさんの作ったgoodchatがおすすめですよ！\n https://good-chat.herokuapp.com"
    		elsif event.message['text']&.try(:include?, "がぞう")
-   			client.reply_message(event['replyToken'], image)
-        else
+   			response = "画像？なんの画像ですか？"
+   		elsif event.message['text']&.try(:include?, "いっつそー")
+   			response = "フライデーチャイナタウン"
+   		elsif event.message['text']&.try(:include?, "ないちゃう")
+   			response = "一緒に泣きましょう　私は泣けないですが.."
+   		elsif event.message['text']&.try(:include?, "こうりつ")
+   			response = "私の開発者(KuroonRails)はとても効率の悪い開発方法だったらしいです"
+   		elsif event.message['text']&.try(:include?, "しゅくだい")
+   			response = "宿題ですか？　頑張りましょう！"
+   		elsif event.message['text']&.try(:include?, "がっこう")
+   			response = "学校つらいですか..? 相談してみては..?"
+   		elsif event.message['text']&.try(:include?, "テスト")
+   			response = "学校のテストですか？開発者(KuroonRails)はとても成績が悪かったようです"
+   		elsif event.message['text']&.try(:include?, "おわり")
+   			response = "何が終わるんですか？"
+   		elsif event.message['text']&.try(:include?, "うおおおおお")
+   			response = "うおおおおおおお"
+   		elsif event.message['text']&.try(:include?, "すごいこと")
+   			message1 = "すごいことですか？いいですよ"
+   			random = Random.new
+   			r = random.rand(1..3)
+   			if r == 1
+          message2 = "432432432432×43243243243242 は" + 432432432432*43243243243242
+   			elsif r == 2
+          message2 = "989047290574845749373937494739 + 43432432432423432 + 43432523 × 5342432 は" + 989047290574845749373937494739 + 43432432432423432 + 43432523 * 5342432
+   			elsif r == 3
+   			  message2 = "439247932834792748923 ÷ 43242 ÷ 11 ÷ 342432 * 43242 は" + 439247932834792748923 / 43242 / 11 / 342432 * 43242 
+        end
+          response = message1 + message2
+
+      else
           random = Random.new
           r = random.rand(1..10)
           if r == 1
