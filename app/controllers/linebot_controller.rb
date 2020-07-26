@@ -296,7 +296,7 @@ class LinebotController < ApplicationController
 	        	jsonURL = 'http://weather.livedoor.com/forecast/rss/area/130010.xml'
 	        	json = open(jsonURL).read
 	        	objs = JSON.parse(json.to_s)
-	        	test = objs['link'][0];
+	        	test = objs['link'][0]['description'];
 	        	p "-----------" + test
 	        	response = test
 	        end
