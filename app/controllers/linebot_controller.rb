@@ -271,15 +271,15 @@ class LinebotController < ApplicationController
           channelname = objs['items'][0]['snippet']['channelTitle']
 
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
-        elsif event.message['text'].&try(:include?, "れんあい")  || event.message['text']&.try!(:include?, "こい") || event.message['text']&.try!(:include?, "キス")
+        elsif event.message['text']&.try(:include?, "れんあい") || event.message['text']&.try(:include?, "こい") || event.message['text']&.try!(:include?, "キス")
         	response = "はぁ...恋したいですね..."
-        elsif event.message['text'].&try(:include?, "すき")
+        elsif event.message['text']&.try(:include?, "すき")
         	response = "私ですか？　ありがとうございます"
-        elsif event.message['text'].&try(:include?, "えいご")
+        elsif event.message['text']&.try(:include?, "えいご")
         	response = "開発者のKuroonRailsさんは英語が好きみたいですよ"
-        elsif event.message['text'].&try(:include?, "チャット") || event.message['text'].&try(:include?, "ちゃっと")
-        	response = "チャットサイトですか？　ならKuroonRailsさんの作ったgoodchatがおすすめですよ！\nhttps://good-chat.herokuapp.com"
-   		elsif event.message['text'].&try(:include?, "がぞう")
+        elsif event.message['text']&.try(:include?, "チャット") || event.message['text']&.try(:include?, "ちゃっと")
+        	response = "チャットサイトですか？　ならKuroonRailsさんの作ったgoodchatがおすすめですよ！\n https://good-chat.herokuapp.com"
+   		elsif event.message['text']&.try(:include?, "がぞう")
    			client.reply_message(event['replyToken'], image)
         else
           random = Random.new
