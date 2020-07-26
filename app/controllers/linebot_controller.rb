@@ -267,14 +267,6 @@ class LinebotController < ApplicationController
           channelname = objs['items'][0]['snippet']['channelTitle']
 
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
-        if event.message['text']&.try!(:include?, "天気")
-        	jsonURL = 'http://weather.livedoor.com/forecast/rss/area/130010.xml'
-        	json = open(jsonURL).read
-        	objs = JSON.parse(json.to_s)
-        	test = objs['link'][0];
-        	p "-----------" + test
-        	response = test
-        end
         else
           random = Random.new
           r = random.rand(1..10)
@@ -300,7 +292,16 @@ class LinebotController < ApplicationController
               response = "くろrailsまん(作者)は将棋が好きみたいです！ \n いいですよねぇ"
           
           end
+	        if event.message['text']&.try!(:include?, "天気")
+	        	jsonURL = 'http://weather.livedoor.com/forecast/rss/area/130010.xml'
+	        	json = open(jsonURL).read
+	        	objs = JSON.parse(json.to_s)
+	        	test = objs['link'][0];
+	        	p "-----------" + test
+	        	response = test
+	        end
         end
+
       # else
       #   response = "#{event.message['text']}ですか！　素晴らしいお言葉ですね！\n ちなみに漢字　アルファベット には対応していません"
       # end
