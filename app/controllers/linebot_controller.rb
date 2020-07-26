@@ -25,6 +25,10 @@ class LinebotController < ApplicationController
     ].shuffle.first
   end
 
+  def image
+  	response = { "type": "image", "originalContentUrl": "https://good-chat.herokuapp.com/uploads/message/image/24/kandoupng.jpg"}
+  end
+
   def bye
       { "type": "sticker", "packageId": "11538", "stickerId": "51626533" }
   end
@@ -267,6 +271,16 @@ class LinebotController < ApplicationController
           channelname = objs['items'][0]['snippet']['channelTitle']
 
           response = "その動画の視聴回数: #{viewcount} です \n その動画の高評価数: #{likecount}です \n その動画の低評価数: #{dislikecount} です \n その動画のチャンネル名: #{channelname} です \n  その動画のチャンネルのURL: https://www.youtube.com/channel/#{channelid}"
+        elsif event.message['text'].&try(:include?, "れんあい")  || event.message['text']&.try!(:include?, "こい") || event.message['text']&.try!(:include?, "キス")
+        	response = "はぁ...恋したいですね..."
+        elsif event.message['text'].&try(:include?, "すき")
+        	response = "私ですか？　ありがとうございます"
+        elsif event.message['text'].&try(:include?, "えいご")
+        	response = "開発者のKuroonRailsさんは英語が好きみたいですよ"
+        elsif event.message['text'].&try(:include?, "チャット") || event.message['text'].&try(:include?, "ちゃっと")
+        	response = "チャットサイトですか？　ならKuroonRailsさんの作ったgoodchatがおすすめですよ！\nhttps://good-chat.herokuapp.com"
+   		elsif event.message['text'].&try(:include?, "がぞう")
+   			client.reply_message(event['replyToken'], image)
         else
           random = Random.new
           r = random.rand(1..10)
@@ -292,13 +306,8 @@ class LinebotController < ApplicationController
               response = "くろrailsまん(作者)は将棋が好きみたいです！ \n いいですよねぇ"
           
           end
-	        if event.message['text']&.try!(:include?, "天気")
-	        	jsonURL = 'http://weather.livedoor.com/forecast/rss/area/130010.xml'
-	        	json = open(jsonURL).read
-	        	objs = JSON.parse(json.to_s)
-	        	test = objs['link'][0]['description'];
-	        	p "-----------" + test
-	        	response = test
+	        if event.message['text']&.try!(:include?, "てんき")
+	        	response = "いい天気ですね(知らないけど)"
 	        end
         end
 
