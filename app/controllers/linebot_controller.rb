@@ -297,8 +297,8 @@ class LinebotController < ApplicationController
    			response = "何が終わるんですか？"
    		elsif event.message['text']&.try(:include?, "うおおおおお")
    			response = "うおおおおおおお"
-   		elsif event.message['text']&.try(:include?, "すごいこと")
-   			message1 = "すごいことですか？いいですよ"
+   		elsif event.message['text']&.try(:include?, "なにかやって") || event.message['text']&.try(:include?, "やって")
+   			message1 = "いまからすごいことします"
    			random = Random.new
    			r = random.rand(1..3)
    			if r == 1
